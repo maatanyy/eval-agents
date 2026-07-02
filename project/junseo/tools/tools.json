@@ -1,0 +1,256 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "scheduleConsultation",
+      "description": "Schedule a consultation callback with a customer service representative for a customer who needs detailed assistance",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "customer_name": {
+            "type": "string",
+            "description": "Full name of the customer"
+          },
+          "contact_number": {
+            "type": "string",
+            "description": "Phone number to call the customer back"
+          },
+          "preferred_datetime": {
+            "type": "string",
+            "description": "Preferred date and time for the callback (e.g., 'tomorrow at 2 PM', '2024-03-15 14:00')"
+          },
+          "topic": {
+            "type": "string",
+            "description": "Topic or issue the customer wants to discuss in the consultation"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "resetPassword",
+      "description": "Send a password reset link to the customer's registered email address for their online account",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_email": {
+            "type": "string",
+            "description": "The email address associated with the customer's account"
+          },
+          "customer_name": {
+            "type": "string",
+            "description": "Full name of the account holder for verification"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "payInvoice",
+      "description": "Process a payment for a customer's invoice or outstanding bill",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "invoice_number": {
+            "type": "string",
+            "description": "The invoice or bill number provided by the customer"
+          },
+          "payment_method": {
+            "type": "string",
+            "description": "Payment method the customer wants to use",
+            "enum": ["credit_card", "debit_card", "bank_transfer", "saved_payment_method"]
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount to pay. Omit to pay the full invoice balance."
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "updatePersonalInformation",
+      "description": "Update a customer's personal information stored in their account",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_email": {
+            "type": "string",
+            "description": "Email address of the account to update"
+          },
+          "field": {
+            "type": "string",
+            "description": "The information field to update",
+            "enum": ["phone_number", "home_address", "email_address", "full_name", "billing_address"]
+          },
+          "new_value": {
+            "type": "string",
+            "description": "The new value to set for the specified field"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "trackOrder",
+      "description": "Look up the current status and location of a customer's order or shipment",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "order_number": {
+            "type": "string",
+            "description": "The order or tracking number provided by the customer"
+          },
+          "customer_name": {
+            "type": "string",
+            "description": "Full name of the customer for verification"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "submitComplaint",
+      "description": "Submit a formal complaint or report an issue on behalf of a customer",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "customer_name": {
+            "type": "string",
+            "description": "Full name of the customer submitting the complaint"
+          },
+          "contact_email": {
+            "type": "string",
+            "description": "Email address to send the complaint confirmation to"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of the complaint",
+            "enum": ["billing_error", "service_quality", "delivery_issue", "product_defect", "staff_behavior", "other"]
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of the complaint or issue"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "checkAccountStatus",
+      "description": "Retrieve a customer's account status, plan details, or current balance",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "account_email": {
+            "type": "string",
+            "description": "Email address associated with the customer's account"
+          },
+          "info_type": {
+            "type": "string",
+            "description": "Type of account information to retrieve",
+            "enum": ["balance", "plan_details", "payment_history", "account_status"]
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "requestRefund",
+      "description": "Submit a refund request for a customer's purchase or payment",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "customer_name": {
+            "type": "string",
+            "description": "Full name of the customer requesting the refund"
+          },
+          "order_or_invoice_number": {
+            "type": "string",
+            "description": "The order or invoice number for which the refund is requested"
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason for the refund request",
+            "enum": ["duplicate_charge", "service_not_received", "product_defective", "cancelled_order", "billing_error", "other"]
+          },
+          "refund_method": {
+            "type": "string",
+            "description": "Preferred refund method",
+            "enum": ["original_payment_method", "account_credit", "bank_transfer"]
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "transferToDepartment",
+      "description": "Transfer the current customer to another department or specialist team",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "department": {
+            "type": "string",
+            "description": "The department or team to transfer the customer to",
+            "enum": ["technical_support", "billing", "sales", "retention", "escalations", "supervisor"]
+          },
+          "reason": {
+            "type": "string",
+            "description": "Brief reason for the transfer"
+          },
+          "customer_name": {
+            "type": "string",
+            "description": "Full name of the customer being transferred"
+          }
+        },
+        "required": []
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "lookupServiceInfo",
+      "description": "Look up information about available products, services, plans, or policies",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The product, service, plan, or policy the customer is asking about"
+          },
+          "category": {
+            "type": "string",
+            "description": "Category of information to look up",
+            "enum": ["pricing", "features", "availability", "terms_and_conditions", "promotions", "general"]
+          }
+        },
+        "required": []
+      }
+    }
+  }
+]
